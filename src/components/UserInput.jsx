@@ -1,22 +1,4 @@
-import { useState } from "react";
-
-export default function UserInput() {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 1000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function handlleInputChange(newValue, inputIdentifier) {
-    setUserInput((prevUserInput) => {
-      return {
-        ...prevUserInput,
-        [inputIdentifier]: newValue,
-      };
-    });
-  }
-
+export default function UserInput({ userInput, onChangeInput }) {
   return (
     <section id="user-input">
       <div className="input-group">
@@ -26,9 +8,7 @@ export default function UserInput() {
             type="number"
             value={userInput.initialInvestment}
             required
-            onChange={(e) =>
-              handlleInputChange(e.target.value, "initialInvestment")
-            }
+            onChange={(e) => onChangeInput(e.target.value, "initialInvestment")}
           />
         </p>
         <p>
@@ -37,9 +17,7 @@ export default function UserInput() {
             type="number"
             value={userInput.annualInvestment}
             required
-            onChange={(e) =>
-              handlleInputChange(e.target.value, "annualInvestment")
-            }
+            onChange={(e) => onChangeInput(e.target.value, "annualInvestment")}
           />
         </p>
       </div>
@@ -50,9 +28,7 @@ export default function UserInput() {
             type="number"
             value={userInput.expectedReturn}
             required
-            onChange={(e) =>
-              handlleInputChange(e.target.value, "expectedReturn")
-            }
+            onChange={(e) => onChangeInput(e.target.value, "expectedReturn")}
           />
         </p>
         <p>
@@ -61,7 +37,7 @@ export default function UserInput() {
             type="number"
             value={userInput.duration}
             required
-            onChange={(e) => handlleInputChange(e.target.value, "duration")}
+            onChange={(e) => onChangeInput(e.target.value, "duration")}
           />
         </p>
       </div>
